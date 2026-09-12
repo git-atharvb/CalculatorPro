@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Casio fx-991EX ClassWiz — Engineering Workstation & Scientific Calculator</title>
+  <meta name="description" content="Authentic Casio fx-991EX ClassWiz scientific and engineering calculator workstation with Natural-V.P.A.M. LCD, Replay D-Pad, live variable inspector, paper tape, and responsive zero-scroll layout.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="casio-lcd">
+  <!-- Dynamic Ambient Glowing Orbs -->
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+
+  <main class="workstation-viewport" id="workstation-viewport">
+    <div class="workstation-container" id="workstation-container">
+      
+      <!-- DESKTOP LEFT DOCK: Variable Inspector & Quick Converter -->
+      <aside class="workstation-dock left-dock" id="dock-left" aria-label="Variable Inspector and Converter">
+        <!-- Variable Inspector Card -->
+        <section class="dock-card dock-variables">
+          <div class="dock-card-header">
+            <div class="dock-title">
+              <span class="dock-title-icon">📊</span>
+              <h3>VARIABLE REGISTERS</h3>
+            </div>
+            <button type="button" class="dock-action-btn" id="dock-clear-vars" title="Reset All Variables">Reset</button>
+          </div>
+          <div class="variables-grid" id="dock-variables-grid">
+            <div class="var-card" data-var="A"><span class="var-badge">A</span><span class="var-val" id="dock-val-A">0</span></div>
+            <div class="var-card" data-var="B"><span class="var-badge">B</span><span class="var-val" id="dock-val-B">0</span></div>
+            <div class="var-card" data-var="C"><span class="var-badge">C</span><span class="var-val" id="dock-val-C">0</span></div>
+            <div class="var-card" data-var="D"><span class="var-badge">D</span><span class="var-val" id="dock-val-D">0</span></div>
+            <div class="var-card" data-var="E"><span class="var-badge">E</span><span class="var-val" id="dock-val-E">0</span></div>
+            <div class="var-card" data-var="F"><span class="var-badge">F</span><span class="var-val" id="dock-val-F">0</span></div>
+            <div class="var-card" data-var="x"><span class="var-badge">x</span><span class="var-val" id="dock-val-x">0</span></div>
+            <div class="var-card" data-var="y"><span class="var-badge">y</span><span class="var-val" id="dock-val-y">0</span></div>
+            <div class="var-card" data-var="M"><span class="var-badge">M</span><span class="var-val" id="dock-val-M">0</span></div>
+          </div>
+        </section>
+
+        <!-- Quick Unit Converter Card -->
+        <section class="dock-card dock-converter">
+          <div class="dock-card-header">
+            <div class="dock-title">
+              <span class="dock-title-icon">🔄</span>
+              <h3>UNIT CONVERTER</h3>
+            </div>
+          </div>
+          <div class="dock-converter-body">
+            <select id="dock-conv-category" class="dock-select">
+              <option value="length">Length</option>
+              <option value="mass">Mass / Weight</option>
+              <option value="temperature">Temperature</option>
+              <option value="pressure">Pressure</option>
+              <option value="energy">Energy & Work</option>
+              <option value="power">Power</option>
+              <option value="speed">Speed</option>
+              <option value="data">Digital Storage</option>
+            </select>
+            <div class="dock-conv-row">
+              <select id="dock-conv-from" class="dock-select-unit"></select>
+              <input type="number" id="dock-conv-in" class="dock-num-input" value="1" step="any">
+            </div>
+            <div class="dock-conv-row">
+              <select id="dock-conv-to" class="dock-select-unit"></select>
+              <input type="text" id="dock-conv-out" class="dock-num-input" readonly>
+            </div>
+            <button type="button" class="dock-btn-insert" id="dock-conv-apply">Send to LCD</button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- CENTER STAGE: Casio fx-991EX ClassWiz Handheld Unit -->
+      <section class="center-stage" aria-label="Casio Calculator Unit">
+        <div class="casio-chassis" id="calculator">
+          <!-- Top Bezel: Casio Logo, Solar Panel, ClassWiz Badge -->
+          <header class="casio-top-bezel">
+            <div class="brand-block">
+              <span class="casio-logo">CASIO</span>
+              <span class="vpam-logo">NATURAL-V.P.A.M.</span>
+            </div>
+
+            <!-- Simulated Photovoltaic Solar Cell Strip -->
+            <div class="solar-panel" title="Solar & Battery Two-Way Power System">
+              <div class="solar-grid">
+                <span class="solar-cell"></span>
+                <span class="solar-cell"></span>
+                <span class="solar-cell"></span>
+                <span class="solar-cell"></span>
+              </div>
+              <span class="solar-subtext">TWO WAY POWER</span>
+            </div>
+
+            <div class="model-block">
+              <span class="model-name">fx-991EX</span>
+              <span class="classwiz-badge">CLASSWIZ</span>
+            </div>
+          </header>
+
+          <!-- Quick Utility Bar -->
+          <div class="hardware-utility-bar">
+            <div class="left-tools">
+              <button type="button" class="util-btn" id="theme-lcd-toggle" title="Toggle LCD / OLED Dark Theme">
+                <span class="util-icon">🌓</span>
+                <span class="util-text">LCD/OLED</span>
+              </button>
+              <button type="button" class="util-btn active" id="sound-toggle" title="Toggle Hardware Haptic Sound">
+                <span class="util-icon">🔊</span>
+                <span class="util-text">Sound</span>
+              </button>
+            </div>
+            <div class="right-tools">
+              <button type="button" class="util-btn desktop-only" id="workstation-mode-toggle" title="Toggle Full Workstation / Focus Handheld">
+                <span class="util-icon">🖥️</span>
+                <span class="util-text">Console</span>
+              </button>
+              <button type="button" class="util-btn mobile-only" id="constants-toggle" title="Physical Constants">
+                <span class="util-icon">⚡</span>
+                <span class="util-text">CONST</span>
+              </button>
+              <button type="button" class="util-btn mobile-only" id="converter-toggle" title="Unit Conversions">
+                <span class="util-icon">🔄</span>
+                <span class="util-text">CONV</span>
+              </button>
+              <button type="button" class="util-btn mobile-only" id="history-toggle" title="History Log">
+                <span class="util-icon">📜</span>
+                <span class="util-text">History</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Natural-V.P.A.M. Dot Matrix LCD Screen -->
+          <div class="casio-lcd-frame">
+            <!-- Top Status Annunciator Bar -->
+            <div class="lcd-status-bar" id="lcd-status-bar">
+              <div class="status-left">
+                <span class="annunciator ann-shift" id="ann-shift">S</span>
+                <span class="annunciator ann-alpha" id="ann-alpha">A</span>
+                <span class="annunciator ann-mem" id="ann-mem">M</span>
+                <span class="annunciator ann-sto" id="ann-sto">STO</span>
+              </div>
+              <div class="status-center">
+                <button type="button" class="annunciator ann-angle active" id="ann-angle" title="Click to cycle DEG / RAD / GRAD">D</button>
+                <span class="annunciator ann-eng" id="ann-eng">ENG</span>
+              </div>
+              <div class="status-right">
+                <span class="annunciator ann-math active">Math ▲▼</span>
+              </div>
+            </div>
+
+            <!-- Screen Content Area -->
+            <div class="lcd-screen" id="lcd-screen">
+              <!-- Expression Line with Active In-Line Blinking Caret -->
+              <div class="lcd-expression-line" id="lcd-expression-line" aria-live="polite">
+                <span class="expr-before" id="expr-before"></span><span class="lcd-cursor" id="lcd-cursor"></span><span class="expr-after" id="expr-after"></span>
+              </div>
+
+              <!-- Secondary/Previous Expression Line -->
+              <div class="lcd-prev-expression" id="lcd-prev-expression"></div>
+
+              <!-- Bottom Main Result Output -->
+              <div class="lcd-result-line" id="lcd-result-line">0</div>
+            </div>
+          </div>
+
+          <!-- Header Control & Replay Navigation Section -->
+          <div class="navigation-cluster">
+            <!-- Shift & Alpha Key Column -->
+            <div class="nav-side-col left-col">
+              <div class="key-wrapper">
+                <span class="key-legend-gold">SHIFT</span>
+                <button type="button" class="casio-btn btn-shift" id="btn-shift" data-key="shift">
+                  SHIFT
+                </button>
+              </div>
+              <div class="key-wrapper">
+                <span class="key-legend-red">ALPHA</span>
+                <button type="button" class="casio-btn btn-alpha" id="btn-alpha" data-key="alpha">
+                  ALPHA
+                </button>
+              </div>
+            </div>
+
+            <!-- The Iconic Casio Oval Replay D-Pad -->
+            <div class="dpad-container">
+              <div class="dpad-disc">
+                <span class="dpad-branding">REPLAY</span>
+                <button type="button" class="dpad-btn dpad-up" id="btn-dpad-up" title="History Previous [▲]" aria-label="History Previous">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><polygon points="5,0 10,7 0,7" fill="currentColor"/></svg>
+                </button>
+                <button type="button" class="dpad-btn dpad-right" id="btn-dpad-right" title="Cursor Right [▶]" aria-label="Cursor Right">
+                  <svg width="7" height="10" viewBox="0 0 7 10"><polygon points="0,0 7,5 0,10" fill="currentColor"/></svg>
+                </button>
+                <button type="button" class="dpad-btn dpad-down" id="btn-dpad-down" title="History Next [▼]" aria-label="History Next">
+                  <svg width="10" height="7" viewBox="0 0 10 7"><polygon points="0,0 10,0 5,7" fill="currentColor"/></svg>
+                </button>
+                <button type="button" class="dpad-btn dpad-left" id="btn-dpad-left" title="Cursor Left [◀]" aria-label="Cursor Left">
+                  <svg width="7" height="10" viewBox="0 0 7 10"><polygon points="7,0 0,5 7,10" fill="currentColor"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- OPTN & ON Key Column -->
+            <div class="nav-side-col right-col">
+              <div class="key-wrapper">
+                <span class="key-legend-gold">SET UP</span>
+                <button type="button" class="casio-btn btn-func-slate" id="btn-optn" data-key="optn" title="Options / Menu">
+                  OPTN
+                </button>
+              </div>
+              <div class="key-wrapper">
+                <span class="key-legend-gold">RESET</span>
+                <button type="button" class="casio-btn btn-on" id="btn-on" data-key="on" title="Power On / Reset All">
+                  ON
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upper Scientific Function Keypad Block (6 Columns × 3 Rows) -->
+          <div class="function-keypad-block">
+            <!-- Row 1 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">■■/□</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="frac" id="btn-frac">■/□</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">∛■</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="sqrt(" data-shift-val="cbrt(" id="btn-sqrt">√■</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">x³</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="^2" data-shift-val="^3" id="btn-square">x²</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">ʸ√■</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="^" data-shift-val="nthRoot(" id="btn-power">x^■</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">10^■</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="log(" data-shift-val="pow10(" id="btn-log">log</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">e^■</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="ln(" data-shift-val="exp(" id="btn-ln">ln</button>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">∠</span><span class="key-legend-red">A</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="(-)" data-alpha-val="A" id="btn-neg">(-)</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">←</span><span class="key-legend-red">B</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="dms" data-alpha-val="B" id="btn-dms">° ' "</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">d/dx</span><span class="key-legend-red">C</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="x" data-shift-val="diff(" data-alpha-val="C" id="btn-var-x">x</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">sin⁻¹</span><span class="key-legend-red">D</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="sin(" data-shift-val="asin(" data-alpha-val="D" id="btn-sin">sin</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">cos⁻¹</span><span class="key-legend-red">E</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="cos(" data-shift-val="acos(" data-alpha-val="E" id="btn-cos">cos</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">tan⁻¹</span><span class="key-legend-red">F</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="tan(" data-shift-val="atan(" data-alpha-val="F" id="btn-tan">tan</button>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">RCL</span><span class="key-legend-red">:</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="sto" data-shift-val="rcl" id="btn-sto">STO</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">←ENG</span><span class="key-legend-red">i</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="eng" id="btn-eng">ENG</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">%</span><span class="key-legend-red">x</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="(" data-shift-val="%" data-alpha-val="x" id="btn-paren-open">(</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">,</span><span class="key-legend-red">y</span></div>
+              <button type="button" class="casio-btn btn-func" data-val=")" data-shift-val="," data-alpha-val="y" id="btn-paren-close">)</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">a b/c⇔d/c</span><span class="key-legend-red">M-</span></div>
+              <button type="button" class="casio-btn btn-func btn-sd" data-val="sd" id="btn-sd" title="Standard <=> Decimal Fraction Toggle">S⇔D</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">M−</span><span class="key-legend-red">M</span></div>
+              <button type="button" class="casio-btn btn-func" data-val="m-plus" data-shift-val="m-minus" data-alpha-val="M" id="btn-mplus">M+</button>
+            </div>
+          </div>
+
+          <!-- Lower Numeric & Arithmetic Keypad Block (5 Columns × 4 Rows) -->
+          <div class="numeric-keypad-block">
+            <!-- Row 4 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">CONST</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="7" data-shift-val="open-const" id="btn-7">7</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">CONV</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="8" data-shift-val="open-conv" id="btn-8">8</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">RESET</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="9" id="btn-9">9</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">INS</span></div>
+              <button type="button" class="casio-btn btn-orange" data-val="del" id="btn-del" title="Delete [Backspace]">DEL</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">OFF</span></div>
+              <button type="button" class="casio-btn btn-orange" data-val="ac" id="btn-ac" title="All Clear [Esc]">AC</button>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">MATRIX</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="4" id="btn-4">4</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">VECTOR</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="5" id="btn-5">5</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"></div>
+              <button type="button" class="casio-btn btn-num" data-val="6" id="btn-6">6</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">nPr</span><span class="key-legend-red">GCD</span></div>
+              <button type="button" class="casio-btn btn-op" data-val="×" data-shift-val="nPr" data-alpha-val="gcd(" id="btn-mul">×</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">nCr</span><span class="key-legend-red">LCM</span></div>
+              <button type="button" class="casio-btn btn-op" data-val="÷" data-shift-val="nCr" data-alpha-val="lcm(" id="btn-div">÷</button>
+            </div>
+
+            <!-- Row 6 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">STAT</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="1" id="btn-1">1</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">CMPLX</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="2" id="btn-2">2</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">BASE-N</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="3" id="btn-3">3</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">Pol</span></div>
+              <button type="button" class="casio-btn btn-op" data-val="+" id="btn-add">+</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">Rec</span></div>
+              <button type="button" class="casio-btn btn-op" data-val="−" id="btn-sub">−</button>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">Rnd</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="0" id="btn-0">0</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">Ran#</span><span class="key-legend-red">RanInt</span></div>
+              <button type="button" class="casio-btn btn-num" data-val="." data-shift-val="rand()" id="btn-dot">.</button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">π</span><span class="key-legend-red">e</span></div>
+              <button type="button" class="casio-btn btn-num btn-exp" data-val="×10^(" data-shift-val="π" data-alpha-val="e" id="btn-exp" title="Scientific Exponent">
+                ×10^x
+              </button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">PreAns</span></div>
+              <button type="button" class="casio-btn btn-num btn-ans" data-val="Ans" id="btn-ans" title="Previous Answer Memory">
+                Ans
+              </button>
+            </div>
+            <div class="key-wrapper">
+              <div class="legends-row"><span class="key-legend-gold">%</span></div>
+              <button type="button" class="casio-btn btn-equals" data-val="=" id="btn-equals" title="Execute [Enter]">=</button>
+            </div>
+          </div>
+
+          <footer class="casio-chassis-footer">
+            <span>CASIO COMPUTER CO., LTD. ADAPTIVE WORKSTATION</span>
+            <div class="developer-credit-glow">
+              <span class="glow-star">✦</span> Developed by <span class="glow-name">Atharv</span> <span class="glow-star">✦</span>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+      <!-- DESKTOP RIGHT DOCK: Calculation Paper Tape & Constants Library -->
+      <aside class="workstation-dock right-dock" id="dock-right" aria-label="Calculation Tape and Constants">
+        <!-- Paper Tape Card -->
+        <section class="dock-card dock-tape">
+          <div class="dock-card-header">
+            <div class="dock-title">
+              <span class="dock-title-icon">📜</span>
+              <h3>CALCULATION TAPE</h3>
+            </div>
+            <button type="button" class="dock-action-btn" id="dock-clear-tape" title="Clear Calculation Tape">Clear</button>
+          </div>
+          <div class="dock-tape-stream" id="dock-tape-stream">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+
+        <!-- Scientific Constants Card -->
+        <section class="dock-card dock-constants">
+          <div class="dock-card-header">
+            <div class="dock-title">
+              <span class="dock-title-icon">⚡</span>
+              <h3>CONSTANTS PALETTE</h3>
+            </div>
+          </div>
+          <div class="dock-constants-body">
+            <input type="text" id="dock-const-search" class="dock-search-input" placeholder="Filter (c, h, G, e)...">
+            <div class="dock-const-scrollable" id="dock-const-list"></div>
+          </div>
+        </section>
+      </aside>
+
+    </div>
+
+    <!-- Modals & Slide-overs (Used on Mobile & for Sub-Menus) -->
+    <div class="casio-modal" id="optn-modal" role="dialog" aria-hidden="true">
+      <div class="modal-backdrop" id="optn-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <h4>CASIO [OPTN] FUNCTIONS</h4>
+          <button type="button" class="modal-close-btn" id="optn-close">✕</button>
+        </div>
+        <div class="optn-grid">
+          <button type="button" class="optn-item" data-action="optn-func" data-val="sinh(">1: sinh</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="cosh(">2: cosh</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="tanh(">3: tanh</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="asinh(">4: sinh⁻¹</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="acosh(">5: cosh⁻¹</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="atanh(">6: tanh⁻¹</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="abs(">7: Absolute |x|</button>
+          <button type="button" class="optn-item" data-action="optn-func" data-val="!">8: Factorial n!</button>
+          <button type="button" class="optn-item" data-action="angle-cycle">9: Angle Mode (DEG/RAD/GRAD)</button>
+          <button type="button" class="optn-item" data-action="open-const">A: Scientific Constants</button>
+          <button type="button" class="optn-item" data-action="open-conv">B: Unit Conversions</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide-over Drawer for Mobile Constants -->
+    <aside class="side-drawer" id="constants-drawer" aria-label="Scientific Constants Drawer">
+      <div class="drawer-backdrop" id="constants-backdrop"></div>
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <div class="drawer-title">
+            <span class="drawer-title-icon">⚡</span>
+            <h3>SCIENTIFIC CONSTANTS</h3>
+          </div>
+          <button type="button" class="icon-btn" id="close-constants-btn">✕</button>
+        </div>
+        <div class="constants-search-box">
+          <input type="text" id="constants-search" placeholder="Search (speed of light, Planck, G)..." aria-label="Search Constants">
+        </div>
+        <div class="drawer-scrollable" id="constants-list"></div>
+      </div>
+    </aside>
+
+    <!-- Slide-over Drawer for Mobile Unit Converter -->
+    <aside class="side-drawer" id="converter-drawer" aria-label="Unit Converter Drawer">
+      <div class="drawer-backdrop" id="converter-backdrop"></div>
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <div class="drawer-title">
+            <span class="drawer-title-icon">🔄</span>
+            <h3>UNIT CONVERTER</h3>
+          </div>
+          <button type="button" class="icon-btn" id="close-converter-btn">✕</button>
+        </div>
+        <div class="converter-category-select-wrapper">
+          <label for="converter-category">CATEGORY</label>
+          <select id="converter-category" class="converter-select">
+            <option value="length">Length</option>
+            <option value="mass">Mass / Weight</option>
+            <option value="temperature">Temperature</option>
+            <option value="pressure">Pressure</option>
+            <option value="energy">Energy & Work</option>
+            <option value="power">Power</option>
+            <option value="speed">Speed</option>
+            <option value="data">Digital Storage</option>
+          </select>
+        </div>
+        <div class="converter-io-panel">
+          <div class="converter-input-group">
+            <div class="converter-group-header">
+              <label for="converter-from-val">From</label>
+              <select id="converter-from-unit" class="converter-unit-select"></select>
+            </div>
+            <input type="number" id="converter-from-val" class="converter-num-input" value="1" step="any">
+          </div>
+          <button type="button" class="btn-swap-units" id="btn-swap-units" title="Swap Units">⇄</button>
+          <div class="converter-input-group">
+            <div class="converter-group-header">
+              <label for="converter-to-val">To</label>
+              <select id="converter-to-unit" class="converter-unit-select"></select>
+            </div>
+            <input type="text" id="converter-to-val" class="converter-num-input" readonly>
+          </div>
+        </div>
+        <div class="converter-actions">
+          <button type="button" class="btn-use-result" id="btn-converter-apply">Insert into Expression</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Slide-over Drawer for Mobile History -->
+    <aside class="side-drawer" id="history-drawer" aria-label="History Drawer">
+      <div class="drawer-backdrop" id="history-backdrop"></div>
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <div class="drawer-title">
+            <span class="drawer-title-icon">📜</span>
+            <h3>CALCULATION HISTORY</h3>
+          </div>
+          <button type="button" class="icon-btn" id="close-history-btn">✕</button>
+        </div>
+        <div class="drawer-scrollable" id="history-list"></div>
+        <div class="drawer-footer">
+          <button type="button" class="btn-clear-history" id="clear-history-btn">Clear History</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast" role="status" aria-live="polite">
+      <span class="toast-message" id="toast-msg">Action</span>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
